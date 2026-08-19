@@ -10,7 +10,7 @@ import {
   UserRound,
 } from "lucide-react";
 
-import "./courses.css";
+import "./Courses.css";
 
 const courses = [
   {
@@ -55,19 +55,14 @@ const courses = [
   },
 ];
 
-function Courses({
-  onBack,
-  onOpenCourse,
-  onAIStudy,
-}) {
+function Courses({ onBack, onOpenCourse, onAIStudy }) {
   const handleOpenCourse = (course) => {
     if (typeof onOpenCourse === "function") {
       onOpenCourse(course);
-    } else {
-      console.error(
-        "onOpenCourse is not connected in App.jsx"
-      );
+      return;
     }
+
+    console.error("onOpenCourse is not connected in App.jsx");
   };
 
   const handleAIStudy = () => {
@@ -78,11 +73,8 @@ function Courses({
 
   return (
     <div className="courses-page premium-courses-page">
-
-      {/* ================= HEADER ================= */}
-
+      {/* HEADER */}
       <header className="courses-header premium-courses-header">
-
         <button
           type="button"
           className="back-button"
@@ -98,7 +90,6 @@ function Courses({
         </div>
 
         <div className="courses-header-student">
-
           <div className="courses-student-avatar">
             <UserRound size={17} />
           </div>
@@ -107,17 +98,12 @@ function Courses({
             <strong>Student Portal</strong>
             <span>Fall 2026</span>
           </div>
-
         </div>
-
       </header>
 
-      {/* ================= HERO ================= */}
-
+      {/* HERO */}
       <section className="courses-hero premium-courses-hero">
-
         <div className="courses-hero-content">
-
           <div className="courses-label">
             <Sparkles size={15} />
             ACADEMIC INTELLIGENCE
@@ -136,145 +122,92 @@ function Courses({
           </p>
 
           <div className="courses-hero-actions">
-
             <button
               type="button"
               className="courses-ai-button"
               onClick={handleAIStudy}
             >
               <BrainCircuit size={18} />
-
-              <span>
-                Study with NEXUS AI
-              </span>
-
+              <span>Study with NEXUS AI</span>
               <ArrowUpRight size={16} />
             </button>
-
           </div>
-
         </div>
 
-        {/* HERO VISUAL */}
-
         <div className="courses-hero-visual">
-
           <div className="courses-orbit orbit-one" />
           <div className="courses-orbit orbit-two" />
 
           <div className="courses-hero-core">
-
             <GraduationCap size={55} />
-
             <span>NEXUS</span>
-
           </div>
-
         </div>
-
       </section>
 
-      {/* ================= STATS ================= */}
-
+      {/* STATS */}
       <section className="courses-stats premium-course-stats">
-
         <div className="course-stat">
-
           <div className="course-stat-icon">
             <BookOpen size={20} />
           </div>
-
           <span>TOTAL COURSES</span>
-
           <strong>04</strong>
-
           <small>Current semester</small>
-
         </div>
 
         <div className="course-stat">
-
           <div className="course-stat-icon">
             <Clock3 size={20} />
           </div>
-
           <span>CREDIT HOURS</span>
-
           <strong>13</strong>
-
           <small>Weekly workload</small>
-
         </div>
 
         <div className="course-stat">
-
           <div className="course-stat-icon">
             <CheckCircle2 size={20} />
           </div>
-
           <span>COMPLETED</span>
-
           <strong>02</strong>
-
           <small>Academic milestones</small>
-
         </div>
 
         <div className="course-stat">
-
           <div className="course-stat-icon">
             <GraduationCap size={20} />
           </div>
-
           <span>SEMESTER</span>
-
           <strong>04</strong>
-
           <small>Fall 2026</small>
-
         </div>
-
       </section>
 
-      {/* ================= COURSES ================= */}
-
+      {/* COURSES */}
       <main className="courses-container">
-
         <div className="courses-title">
-
           <div>
-
             <span className="section-label">
               CURRENT SEMESTER
             </span>
 
-            <h2>
-              My Courses
-            </h2>
+            <h2>My Courses</h2>
 
             <p>
               Continue where you left off and keep
               improving your academic progress.
             </p>
-
           </div>
 
           <div className="semester-badge">
-
             <span />
-
             FALL 2026
-
           </div>
-
         </div>
 
-        {/* COURSE GRID */}
-
         <div className="courses-grid premium-courses-grid">
-
           {courses.map((course) => (
-
             <article
               className="course-card premium-course-card"
               key={course.code}
@@ -282,105 +215,63 @@ function Courses({
                 "--course-color": course.color,
               }}
             >
-
               <div className="course-card-glow" />
 
-              {/* TOP */}
-
               <div className="course-card-top">
-
                 <span className="course-code">
                   {course.code}
                 </span>
 
                 <span className="course-status">
-
                   <span />
-
                   {course.status}
-
                 </span>
-
               </div>
-
-              {/* ICON */}
 
               <div className="course-icon premium-course-icon">
-
                 <BookOpen size={23} />
-
               </div>
 
-              {/* TITLE */}
-
-              <h3>
-                {course.name}
-              </h3>
+              <h3>{course.name}</h3>
 
               <p className="course-instructor">
                 {course.instructor}
               </p>
 
-              {/* HOURS */}
-
               <div className="course-hours">
-
                 <Clock3 size={14} />
 
-                <span>
-                  {course.hours}
-                </span>
+                <span>{course.hours}</span>
 
                 <span>
                   • {course.lessons} Lessons
                 </span>
-
               </div>
 
-              {/* PROGRESS */}
-
               <div className="progress-header">
+                <span>COURSE PROGRESS</span>
 
-                <span>
-                  COURSE PROGRESS
-                </span>
-
-                <strong>
-                  {course.progress}%
-                </strong>
-
+                <strong>{course.progress}%</strong>
               </div>
 
               <div className="progress-bar premium-progress">
-
                 <div
                   className="progress-fill"
                   style={{
                     width: `${course.progress}%`,
-                    backgroundColor:
-                      course.color,
+                    backgroundColor: course.color,
                   }}
                 />
-
               </div>
 
-              {/* BUTTONS */}
-
               <div className="course-card-actions">
-
                 <button
                   type="button"
                   className="course-button"
-                  onClick={() =>
-                    handleOpenCourse(course)
-                  }
+                  onClick={() => handleOpenCourse(course)}
                 >
-                  <span>
-                    Open Course
-                  </span>
-
+                  <span>Open Course</span>
                   <ArrowUpRight size={16} />
-
                 </button>
 
                 <button
@@ -388,60 +279,42 @@ function Courses({
                   className="course-ai-small"
                   onClick={handleAIStudy}
                   title="Study with AI"
+                  aria-label="Study with AI"
                 >
                   <BrainCircuit size={17} />
                 </button>
-
               </div>
-
             </article>
-
           ))}
-
         </div>
-
       </main>
 
-      {/* ================= AI BANNER ================= */}
-
+      {/* AI BANNER */}
       <section className="courses-ai-banner premium-ai-banner">
-
         <div className="courses-ai-banner-icon">
           <BrainCircuit size={32} />
         </div>
 
         <div className="courses-ai-banner-content">
+          <span>NEXUS INTELLIGENCE</span>
 
-          <span>
-            NEXUS INTELLIGENCE
-          </span>
-
-          <h2>
-            Your courses just got smarter.
-          </h2>
+          <h2>Your courses just got smarter.</h2>
 
           <p>
             Let NEXUS AI explain difficult concepts,
             generate practice questions and build a
             personalized study plan.
           </p>
-
         </div>
 
         <button
           type="button"
           onClick={handleAIStudy}
         >
-          <span>
-            Open AI Study
-          </span>
-
+          <span>Open AI Study</span>
           <ArrowUpRight size={17} />
-
         </button>
-
       </section>
-
     </div>
   );
 }
