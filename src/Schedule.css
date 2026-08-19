@@ -1,0 +1,473 @@
+* {
+  box-sizing: border-box;
+}
+
+.nx-schedule {
+  min-height: 100vh;
+  background: #f5f7fb;
+  color: #111827;
+}
+
+/* HEADER */
+
+.nx-s-header {
+  height: 74px;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border-bottom: 1px solid #e8ebf0;
+}
+
+.nx-s-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  background: transparent;
+  color: #667085;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.nx-s-back:hover {
+  color: #111827;
+}
+
+.nx-s-logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.nx-s-logo b {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: #111827;
+  color: white;
+}
+
+.nx-s-term {
+  padding: 8px 12px;
+  border: 1px solid #e4e7ec;
+  border-radius: 999px;
+  color: #667085;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+/* HERO */
+
+.nx-s-hero {
+  min-height: 355px;
+  padding: 65px 8%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+
+  background:
+    radial-gradient(
+      circle at 85% 30%,
+      rgba(79, 70, 229, 0.18),
+      transparent 30%
+    ),
+    #111827;
+
+  color: white;
+}
+
+.nx-s-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #a5b4fc;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.nx-s-hero h1 {
+  margin: 18px 0;
+  font-size: clamp(48px, 6vw, 76px);
+  line-height: 0.95;
+  letter-spacing: -4px;
+}
+
+.nx-s-hero h1 em {
+  color: #a5b4fc;
+  font-style: normal;
+}
+
+.nx-s-hero p {
+  max-width: 570px;
+  margin: 0;
+  color: #aab4c3;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.nx-s-date-card {
+  width: 220px;
+  padding: 30px;
+  border: 1px solid #30394b;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(15px);
+}
+
+.nx-s-date-card span {
+  color: #98a2b3;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+
+.nx-s-date-card strong {
+  display: block;
+  margin: 10px 0 2px;
+  font-size: 52px;
+  letter-spacing: -3px;
+}
+
+.nx-s-date-card small {
+  color: #667085;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+/* STATS */
+
+.nx-s-stats {
+  width: min(1080px, 88%);
+  margin: -32px auto 0;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+
+  position: relative;
+}
+
+.nx-s-stat {
+  min-height: 95px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 18px;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 17px;
+
+  background: white;
+
+  box-shadow:
+    0 10px 35px rgba(16, 24, 40, 0.06);
+}
+
+.nx-s-stat-icon {
+  width: 42px;
+  height: 42px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 12px;
+
+  background: #f1f3ff;
+  color: #4f46e5;
+}
+
+.nx-s-stat span {
+  display: block;
+
+  color: #98a2b3;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+.nx-s-stat strong {
+  display: block;
+
+  margin-top: 3px;
+
+  font-size: 24px;
+}
+
+/* CONTENT */
+
+.nx-s-content {
+  width: min(1080px, 88%);
+  margin: auto;
+
+  padding: 65px 0 90px;
+}
+
+.nx-s-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  margin-bottom: 25px;
+}
+
+.nx-s-title > div:first-child span {
+  color: #98a2b3;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: 1.4px;
+}
+
+.nx-s-title h2 {
+  margin: 7px 0 0;
+
+  font-size: 31px;
+
+  letter-spacing: -1px;
+}
+
+.nx-s-range {
+  padding: 8px 12px;
+
+  border: 1px solid #e4e7ec;
+  border-radius: 999px;
+
+  color: #667085;
+
+  font-size: 9px;
+  font-weight: 800;
+}
+
+/* LIST */
+
+.nx-s-list {
+  display: grid;
+  gap: 10px;
+}
+
+.nx-s-item {
+  display: grid;
+
+  grid-template-columns:
+    60px
+    50px
+    minmax(0, 1fr)
+    35px;
+
+  align-items: center;
+
+  gap: 18px;
+
+  padding: 17px 20px;
+
+  border: 1px solid #e4e7ec;
+  border-radius: 17px;
+
+  background: white;
+
+  transition: 0.2s ease;
+}
+
+.nx-s-item:hover {
+  transform: translateY(-2px);
+
+  border-color: #cfd4dc;
+
+  box-shadow:
+    0 12px 30px rgba(16, 24, 40, 0.07);
+}
+
+/* DATE */
+
+.nx-s-date {
+  text-align: center;
+
+  padding-right: 17px;
+
+  border-right: 1px solid #eaecf0;
+}
+
+.nx-s-date span {
+  display: block;
+
+  color: #98a2b3;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+.nx-s-date strong {
+  display: block;
+
+  margin: 2px 0;
+
+  font-size: 27px;
+
+  letter-spacing: -1px;
+}
+
+.nx-s-date small {
+  color: #b0b7c3;
+
+  font-size: 8px;
+  font-weight: 700;
+}
+
+/* ICON */
+
+.nx-s-icon {
+  width: 50px;
+  height: 50px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 14px;
+
+  background: #f1f3ff;
+
+  color: #4f46e5;
+}
+
+/* DETAILS */
+
+.nx-s-type {
+  display: inline-block;
+
+  color: #4f46e5;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+.nx-s-details h3 {
+  margin: 6px 0;
+
+  font-size: 15px;
+
+  color: #111827;
+}
+
+.nx-s-meta {
+  display: flex;
+
+  gap: 18px;
+
+  color: #98a2b3;
+
+  font-size: 10px;
+}
+
+.nx-s-meta span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* NUMBER */
+
+.nx-s-number {
+  color: #c1c6cf;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  text-align: right;
+}
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+  .nx-s-header {
+    padding: 0 18px;
+  }
+
+  .nx-s-logo {
+    display: none;
+  }
+
+  .nx-s-hero {
+    padding: 50px 22px 70px;
+  }
+
+  .nx-s-date-card {
+    display: none;
+  }
+
+  .nx-s-hero h1 {
+    font-size: 52px;
+    letter-spacing: -3px;
+  }
+
+  .nx-s-stats {
+    width: calc(100% - 28px);
+
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .nx-s-content {
+    width: calc(100% - 28px);
+
+    padding-top: 50px;
+  }
+
+  .nx-s-title {
+    align-items: flex-start;
+
+    gap: 15px;
+  }
+
+  .nx-s-item {
+    grid-template-columns: 48px minmax(0, 1fr);
+
+    gap: 13px;
+
+    padding: 15px;
+  }
+
+  .nx-s-date {
+    border-right: 0;
+
+    border-bottom: 1px solid #eaecf0;
+
+    padding: 0 0 8px;
+  }
+
+  .nx-s-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .nx-s-details {
+    grid-column: 2;
+  }
+
+  .nx-s-number {
+    display: none;
+  }
+
+  .nx-s-meta {
+    flex-direction: column;
+    gap: 6px;
+  }
+}
