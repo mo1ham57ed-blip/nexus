@@ -1,8 +1,8 @@
-const API_URL = "http://localhost:5000";
+const API_URL = "/api";
 
 export async function checkBackend() {
   try {
-    const response = await fetch(`${API_URL}/api/health`);
+    const response = await fetch(`${API_URL}/health`);
 
     if (!response.ok) {
       throw new Error("Backend health check failed");
@@ -17,7 +17,7 @@ export async function checkBackend() {
 
 export async function loginStudent(email, password) {
   try {
-    const response = await fetch(`${API_URL}/api/login`, {
+    const response = await fetch(`${API_URL}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -31,9 +31,12 @@ export async function loginStudent(email, password) {
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(
-        data.message || "Login failed"
-      );
+      return {
+        success: false,
+        message:
+          data?.message ||
+          "Invalid email or password.",
+      };
     }
 
     return data;
@@ -43,23 +46,30 @@ export async function loginStudent(email, password) {
     return {
       success: false,
       message:
-        error.message ||
-        "Unable to connect to NEXUS server",
+        "Unable to connect to NEXUS server.",
     };
   }
 }
 
 export async function getStudentProfile() {
   try {
-    const response = await fetch(`${API_URL}/api/student`);
+    const response = await fetch(
+      `${API_URL}/student`
+    );
 
     if (!response.ok) {
-      throw new Error("Student profile request failed");
+      throw new Error(
+        "Student profile request failed"
+      );
     }
 
     return await response.json();
   } catch (error) {
-    console.error("Student profile error:", error);
+    console.error(
+      "Student profile error:",
+      error
+    );
+
     return null;
   }
 }
