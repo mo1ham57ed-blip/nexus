@@ -18,7 +18,8 @@ function App() {
   const [backendStatus, setBackendStatus] =
     useState("Checking...");
 
-  const [loggedIn, setLoggedIn] = useState(true);
+  // المستخدم يبدأ غير مسجل الدخول
+  const [loggedIn, setLoggedIn] = useState(false);
 
   // الكورس الذي اختاره المستخدم
   const [selectedCourse, setSelectedCourse] =
@@ -36,26 +37,15 @@ function App() {
     checkBackend()
       .then((data) => {
         if (data) {
-          console.log(
-            "BACKEND RESPONSE:",
-            data
-          );
-
+          console.log("BACKEND RESPONSE:", data);
           setBackendStatus("connected");
         } else {
-          console.error(
-            "Backend connection failed"
-          );
-
+          console.error("Backend connection failed");
           setBackendStatus("failed");
         }
       })
       .catch((error) => {
-        console.error(
-          "Backend error:",
-          error
-        );
-
+        console.error("Backend error:", error);
         setBackendStatus("failed");
       });
   }, []);
@@ -88,10 +78,7 @@ function App() {
   // =========================================
 
   const handleOpenCourse = (course) => {
-    console.log(
-      "OPEN COURSE:",
-      course
-    );
+    console.log("OPEN COURSE:", course);
 
     setSelectedCourse(course);
     setPage("course-details");
@@ -111,10 +98,7 @@ function App() {
   // =========================================
 
   const handleOpenAssignment = (assignment) => {
-    console.log(
-      "OPEN ASSIGNMENT:",
-      assignment
-    );
+    console.log("OPEN ASSIGNMENT:", assignment);
 
     setSelectedAssignment(assignment);
     setPage("assignment-details");
@@ -199,11 +183,7 @@ function App() {
       {page === "courses" && (
         <Courses
           onBack={goToDashboard}
-
-          onOpenCourse={
-            handleOpenCourse
-          }
-
+          onOpenCourse={handleOpenCourse}
           onAIStudy={() =>
             setPage("ai-study")
           }
@@ -217,19 +197,13 @@ function App() {
       {page === "course-details" && (
         <CourseDetails
           course={selectedCourse}
-
-          onBack={
-            handleBackToCourses
-          }
-
+          onBack={handleBackToCourses}
           onAIStudy={() =>
             setPage("ai-study")
           }
-
           onOpenAssignment={
             handleOpenAssignment
           }
-
           assignments={[
             {
               id: 1,
@@ -269,7 +243,6 @@ function App() {
           onOpenAssignment={
             handleOpenAssignment
           }
-
           assignments={[
             {
               id: 1,
@@ -312,10 +285,7 @@ function App() {
 
       {page === "assignment-details" && (
         <AssignmentDetails
-          assignment={
-            selectedAssignment
-          }
-
+          assignment={selectedAssignment}
           onBack={() => {
             setPage(
               selectedCourse
@@ -323,7 +293,6 @@ function App() {
                 : "assignments"
             );
           }}
-
           onComplete={
             handleCompleteAssignment
           }
