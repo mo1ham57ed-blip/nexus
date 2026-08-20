@@ -8,8 +8,10 @@ import {
   Mail,
   Sparkles,
 } from "lucide-react";
-import { loginStudent } from "./api";
 import "./Login.css";
+
+const DEMO_EMAIL = "student@nexus.edu";
+const DEMO_PASSWORD = "Nexus2026";
 
 function Login({ onLogin }) {
   const [email, setEmail] = useState("");
@@ -18,57 +20,51 @@ function Login({ onLogin }) {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
     setError("");
 
     const cleanEmail = email.trim().toLowerCase();
-    const cleanPassword = password;
 
-    if (!cleanEmail || !cleanPassword) {
+    if (!cleanEmail || !password) {
       setError("Please enter your email and password.");
       return;
     }
 
     setLoading(true);
 
-    try {
-      const result = await loginStudent(
-        cleanEmail,
-        cleanPassword
-      );
-
-      if (!result?.success) {
-        setError(
-          result?.message ||
-            "Invalid email or password."
-        );
+    setTimeout(() => {
+      if (
+        cleanEmail !== DEMO_EMAIL ||
+        password !== DEMO_PASSWORD
+      ) {
+        setLoading(false);
+        setError("Invalid email or password.");
         return;
       }
 
-      localStorage.setItem(
-        "nexusLoggedIn",
-        "true"
-      );
+      localStorage.setItem("nexusLoggedIn", "true");
 
       localStorage.setItem(
         "nexusUser",
-        JSON.stringify(result.user)
+        JSON.stringify({
+          name: "Mohamed Hassan",
+          email: DEMO_EMAIL,
+          program: "Information Systems",
+          year: "Second Year",
+          gpa: 3.7,
+          progress: 72,
+          completed: 18,
+        })
       );
+
+      setLoading(false);
 
       if (onLogin) {
         onLogin();
       }
-    } catch (error) {
-      console.error("Login error:", error);
-
-      setError(
-        "Unable to connect to NEXUS server."
-      );
-    } finally {
-      setLoading(false);
-    }
+    }, 500);
   };
 
   return (
