@@ -18,8 +18,19 @@ function App() {
   const [backendStatus, setBackendStatus] =
     useState("Checking...");
 
-  // المستخدم يبدأ غير مسجل الدخول
-  const [loggedIn, setLoggedIn] = useState(false);
+  // =========================================
+  // LOGIN STATE
+  // يقرأ حالة تسجيل الدخول المحفوظة
+  // =========================================
+
+  const [loggedIn, setLoggedIn] = useState(() => {
+    try {
+      return localStorage.getItem("nexusLoggedIn") === "true";
+    } catch (error) {
+      console.error("Login storage error:", error);
+      return false;
+    }
+  });
 
   // الكورس الذي اختاره المستخدم
   const [selectedCourse, setSelectedCourse] =
@@ -69,8 +80,31 @@ function App() {
   // =========================================
 
   const handleLogin = () => {
+    try {
+      localStorage.setItem("nexusLoggedIn", "true");
+    } catch (error) {
+      console.error("Unable to save login:", error);
+    }
+
     setLoggedIn(true);
     setPage("dashboard");
+  };
+
+  // =========================================
+  // LOGOUT
+  // =========================================
+
+  const handleLogout = () => {
+    try {
+      localStorage.removeItem("nexusLoggedIn");
+    } catch (error) {
+      console.error("Unable to remove login:", error);
+    }
+
+    setLoggedIn(false);
+    setPage("dashboard");
+    setSelectedCourse(null);
+    setSelectedAssignment(null);
   };
 
   // =========================================
@@ -143,6 +177,7 @@ function App() {
         <Dashboard
           onNavigate={goToPage}
           backendStatus={backendStatus}
+          onLogout={handleLogout}
         />
       )}
 
@@ -184,9 +219,7 @@ function App() {
         <Courses
           onBack={goToDashboard}
           onOpenCourse={handleOpenCourse}
-          onAIStudy={() =>
-            setPage("ai-study")
-          }
+          onAIStudy={() => setPage("ai-study")}
         />
       )}
 
@@ -198,12 +231,8 @@ function App() {
         <CourseDetails
           course={selectedCourse}
           onBack={handleBackToCourses}
-          onAIStudy={() =>
-            setPage("ai-study")
-          }
-          onOpenAssignment={
-            handleOpenAssignment
-          }
+          onAIStudy={() => setPage("ai-study")}
+          onOpenAssignment={handleOpenAssignment}
           assignments={[
             {
               id: 1,
@@ -240,9 +269,7 @@ function App() {
       {page === "assignments" && (
         <Assignments
           onBack={goToDashboard}
-          onOpenAssignment={
-            handleOpenAssignment
-          }
+          onOpenAssignment={handleOpenAssignment}
           assignments={[
             {
               id: 1,
@@ -293,9 +320,7 @@ function App() {
                 : "assignments"
             );
           }}
-          onComplete={
-            handleCompleteAssignment
-          }
+          onComplete={handleCompleteAssignment}
         />
       )}
 
