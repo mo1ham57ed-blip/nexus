@@ -15,6 +15,40 @@ export async function checkBackend() {
   }
 }
 
+export async function loginStudent(email, password) {
+  try {
+    const response = await fetch(`${API_URL}/api/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(
+        data.message || "Login failed"
+      );
+    }
+
+    return data;
+  } catch (error) {
+    console.error("Login error:", error);
+
+    return {
+      success: false,
+      message:
+        error.message ||
+        "Unable to connect to NEXUS server",
+    };
+  }
+}
+
 export async function getStudentProfile() {
   try {
     const response = await fetch(`${API_URL}/api/student`);
